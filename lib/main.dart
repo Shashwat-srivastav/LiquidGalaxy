@@ -6,6 +6,7 @@ import 'dart:io';
 
 import 'package:dartssh2/dartssh2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -202,7 +203,7 @@ class _LiquidButtonsState extends State<LiquidButtons> {
     await  client.execute("echo '${LiquidButtons.orbitBalloon(img)}' > /var/www/html/kml/slave_1.kml"); 
      
      
-      for (var i = 1; i <= 3; i++) {
+      for (var i = 1; i <= 2; i++) {
         String search =
             '<href>##LG_PHPIFACE##kml\\/slave_$i.kml<\\/href><refreshMode>onInterval<\\/refreshMode><refreshInterval>2<\\/refreshInterval>';
         String replace = '<href>##LG_PHPIFACE##kml\\/slave_$i.kml<\\/href>';
@@ -213,7 +214,7 @@ class _LiquidButtonsState extends State<LiquidButtons> {
 
 
 
-     for (var i = 1; i <= 3; i++) {
+     for (var i = 1; i <= 2; i++) {
         String search = '<href>##LG_PHPIFACE##kml\\/slave_$i.kml<\\/href>';
         String replace =
             '<href>##LG_PHPIFACE##kml\\/slave_$i.kml<\\/href><refreshMode>onInterval<\\/refreshMode><refreshInterval>2<\\/refreshInterval>';
@@ -229,75 +230,84 @@ class _LiquidButtonsState extends State<LiquidButtons> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.amber,
-              ),
-              height: MediaQuery.of(context).size.height * 0.2,
-              width: MediaQuery.of(context).size.width * 1,
-              child: TextButton(
-                child: Text('reboot the lg (with a warning before)',
-                    style: TextStyle(fontSize: 36)),
-                onPressed: () {
-                   reboot();
-                },
-              ),
-            ).p(20),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.amber,
-              ),
-              height: MediaQuery.of(context).size.height * 0.2,
-              width: MediaQuery.of(context).size.width * 1,
-              child: TextButton(
-                child: Text('move the lg to your home city',
-                    style: TextStyle(fontSize: 36)),
-                onPressed: () {
-                   move();
-                },
-              ),
-            ).p(20),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.amber,
-              ),
-              height: MediaQuery.of(context).size.height * 0.2,
-              width: MediaQuery.of(context).size.width * 1,
-              child: TextButton(
-                child: Text('make an orbit upon arrival to your city',
-                    style: TextStyle(fontSize: 36)),
-                onPressed: () {
-                   connection();
-                },
-              ),
-            ).p(20),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.amber,
-              ),
-
-              height: MediaQuery.of(context).size.height * 0.2,
-              width: MediaQuery.of(context).size.width * 1,
-              child: TextButton(
-                child: Text(
-                  ' City name and your name ',
-                  style: TextStyle(fontSize: 36),
-                ),
-                onPressed: () {
-                  onlgRig();
-                },
-              ),
-            ).p(20)
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+          
+              color: Colors.deepPurpleAccent.withOpacity(0.1)
+            ),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.deepPurpleAccent.withOpacity(0.3),
+                  ),
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width * 1,
+                  child: TextButton(
+                    child: Text('reboot the lg (with a warning before)',
+                        style: TextStyle(fontSize: 36)),
+                    onPressed: () {
+                       reboot();
+                    },
+                  ),
+                ).p(20),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.deepPurpleAccent.withOpacity(0.3),
+                  ),
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width * 1,
+                  child: TextButton(
+                    child: Text('move the lg to your home city',
+                        style: TextStyle(fontSize: 36)),
+                    onPressed: () {
+                       move();
+                    },
+                  ),
+                ).p(20),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.deepPurpleAccent.withOpacity(0.3),
+                  ),
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width * 1,
+                  child: TextButton(
+                    child: Text('make an orbit upon arrival to your city',
+                        style: TextStyle(fontSize: 36)),
+                    onPressed: () {
+                       connection();
+                    },
+                  ),
+                ).p(20),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.deepPurpleAccent.withOpacity(0.3)
+                  ),
+            
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width * 1,
+                  child: TextButton(
+                    child: Text(
+                      ' City name and your name ',
+                      style: TextStyle(fontSize: 36),
+                    ),
+                    onPressed: () {
+                      onlgRig();
+                    },
+                  ),
+                ).p(20)
+              ],
+            ),
+          ).centered(),
         ),
       ),
     );
@@ -323,30 +333,87 @@ class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          TextFormField(
-           onFieldSubmitted: (value) {
-             ip=value;
-           },
-          ),
-           TextFormField(
-            onFieldSubmitted: (value) {
-              user = value;
-            },
-          ),
-           TextFormField(
-            onFieldSubmitted: (value) {
-              pass = value;
-            },
-          ),
-          ElevatedButton(onPressed: (){
-            Get.to( LiquidButtons(ip:ip,user: user,pass: pass));
+      body: Container(
+        height: MediaQuery.of(context).size.height*0.6,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+             color: Colors.deepPurpleAccent.withOpacity(0.4),
+        ),
+        child: Column(
+          children: [
+           TextField(
+              decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  filled: true,
+                  fillColor: Color.fromARGB(255, 150, 187, 225),
+                  label: "IP Address".text.white.make(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  )),
+              // keyboardType: TextInputType.number,
+              onSubmitted: (v) {
+                ip=v;
+              },
+            ).p(20),
+              TextField(
+              decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  filled: true,
+                  fillColor: Color.fromARGB(255, 150, 187, 225),
+                  label: "User Name".text.white.make(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  )),
+              // keyboardType: TextInputType.number,
+              onSubmitted: (v) {
+                user = v;
+              },
+            ).p(20),
+              TextField(
+              decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  filled: true,
+                  fillColor: Color.fromARGB(255, 150, 187, 225),
+                  label: "Password".text.white.make(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  )),
+              // keyboardType: TextInputType.number,
+              onSubmitted: (v) {
+                pass = v;
+              },
+            ).p(20),
             
-           
-          }, child: "submit".text.make())
-        ],
-      ),
+            ElevatedButton(onPressed: (){
+              Get.to( LiquidButtons(ip:ip,user: user,pass: pass));
+              
+             
+            }, child: "submit".text.make())
+                .p(20)
+          ],
+        ).p(50),
+      ).centered().p(10),
     );
   }
 }
